@@ -1,0 +1,7 @@
+{
+  "DOOR": ["Entrance", "Garage", "1st Floor Bedroom", "2nd Floor Bathroom", "Kitchen"],
+  "WINDOW": ["Hall", "2nd Floor Bedroom", "Kitchen", "Attic"],
+  "LIGHTS" : ["Hall", "Garage", "1st Floor Bathroom", "Kitchen", "Attic", "Basement"],
+  "TV": ["Hall", "1st Floor Bedroom", "Basement"],
+  "MICROWAVE" : ["Kitchen", "Basement"]
+}

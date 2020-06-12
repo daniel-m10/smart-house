@@ -5,7 +5,10 @@
 *.idea
 
 # Gradle files
-.gradle
+*.gradle/
+
+# Gradle wrapper folder
+gradle
 
 #Build files
 build
