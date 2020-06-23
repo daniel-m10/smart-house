@@ -4,8 +4,14 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * Unit test for Device class.
+ */
 public class DeviceTest {
 
+    /**
+     * Verifies if a new Device can be created.
+     */
     @Test
     public void aNewDeviceCanBeCreated() {
         Device device = new Device("Daniel's smartphone");
@@ -13,6 +19,9 @@ public class DeviceTest {
         assertEquals("Device was not created correctly.", expectedResult, device.getName());
     }
 
+    /**
+     * Verifies if a new Device prints the correct message.
+     */
     @Test
     public void newDeviceCanPrintOutAMessage() {
         Device device = new Device("Daniel's smartphone");
