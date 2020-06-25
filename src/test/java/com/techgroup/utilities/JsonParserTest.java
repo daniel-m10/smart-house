@@ -22,10 +22,10 @@ public class JsonParserTest {
     private static final String ENTRANCE = "Entrance";
     private static final String GARAGE = "Garage";
     private static final String HALL = "Hall";
-    private static final String BEDROOM_ONE = "1st Floor Bedroom";
-    private static final String BEDROOM_TWO = "2nd Floor Bedroom";
-    private static final String BATHROOM_ONE = "1st Floor Bathroom";
-    private static final String BATHROOM_TWO = "2nd Floor Bathroom";
+    private static final String BEDROOM_ONE = "1st_Floor_Bedroom";
+    private static final String BEDROOM_TWO = "2nd_Floor_Bedroom";
+    private static final String BATHROOM_ONE = "1st_Floor_Bathroom";
+    private static final String BATHROOM_TWO = "2nd_Floor_Bathroom";
     private static final String KITCHEN = "Kitchen";
     private static final String ATTIC = "Attic";
     private static final String BASEMENT = "Basement";
