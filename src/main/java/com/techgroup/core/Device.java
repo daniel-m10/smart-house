@@ -24,7 +24,7 @@ public class Device implements Observer {
     @Override
     public void update(final String message) {
         this.message = message;
-        System.out.println(String.format("%s we have some updates for you:%n%s", this.name, this.message));
+        System.out.println(String.format("%s we have some updates for you, %s", this.name, this.message));
     }
 
     /**

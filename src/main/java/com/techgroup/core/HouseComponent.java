@@ -16,7 +16,7 @@ public abstract class HouseComponent {
     public HouseComponent(final String name) {
         this.name = name;
         this.state = false;
-        this.componentStateMessage = "%s is now %s";
+        this.componentStateMessage = "-- %s -- is now %s%n";
     }
 
     /**
