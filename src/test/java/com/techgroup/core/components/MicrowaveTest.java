@@ -1,6 +1,8 @@
 package com.techgroup.core.components;
 
 import com.techgroup.core.HouseComponent;
+import com.techgroup.core.sensor.Sensor;
+import com.techgroup.types.SensorOrder;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,7 +19,7 @@ public class MicrowaveTest {
      */
     @Before
     public void setUp() {
-        microwave = new Lights("Kitchen microwave");
+        microwave = new Microwave("Kitchen microwave");
     }
 
     /**
@@ -40,13 +42,22 @@ public class MicrowaveTest {
     }
 
     /**
+     * Verifies if Microwave object can change its state through a Sensor order.
+     */
+    @Test
+    public void aMicrowaveCanChangeItsStateBasedInASensorOrder() {
+        ((Sensor)microwave).changeState(SensorOrder.TURN_OFF);
+        assertFalse("Door should be closed", microwave.getState());
+    }
+
+    /**
      * Verifies if Microwave object can print its state.
      */
     @Test
     public void aMicrowaveCanPrintItsState() {
-        String expectedResult = "Kitchen microwave is now turned on";
+        String expectedResult = "-- Kitchen microwave -- is now turned on";
         microwave.setComponentStateMessage("turned on");
         microwave.printComponentState();
-        assertEquals("Microwave should be turned on", expectedResult, microwave.getComponentStateMessage());
+        assertEquals("Microwave should be turned on", expectedResult.trim(), microwave.getComponentStateMessage().trim());
     }
 }

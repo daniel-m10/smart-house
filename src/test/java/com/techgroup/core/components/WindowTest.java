@@ -1,10 +1,13 @@
 package com.techgroup.core.components;
 
 import com.techgroup.core.HouseComponent;
+import com.techgroup.core.sensor.Sensor;
+import com.techgroup.types.SensorOrder;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -41,13 +44,22 @@ public class WindowTest {
     }
 
     /**
+     * Verifies if Window object can change its state through a Sensor order.
+     */
+    @Test
+    public void aWindowCanChangeItsStateBasedInASensorOrder() {
+        ((Sensor)window).changeState(SensorOrder.CLOSE);
+        assertFalse("Door should be closed", window.getState());
+    }
+
+    /**
      * Verifies if Window object can print its state.
      */
     @Test
     public void aWindowCanPrintItsState() {
-        String expectedResult = "1st floor window is now open";
+        String expectedResult = "-- 1st floor window -- is now open";
         window.setComponentStateMessage("open");
         window.printComponentState();
-        assertEquals("Window should be open", expectedResult, window.getComponentStateMessage());
+        assertEquals("Window should be open", expectedResult.trim(), window.getComponentStateMessage().trim());
     }
 }

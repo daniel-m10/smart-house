@@ -1,6 +1,8 @@
 package com.techgroup.core.components;
 
 import com.techgroup.core.HouseComponent;
+import com.techgroup.core.sensor.Sensor;
+import com.techgroup.types.SensorOrder;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -40,13 +42,22 @@ public class TvTest {
     }
 
     /**
+     * Verifies if Tv object can change its state through a Sensor order.
+     */
+    @Test
+    public void aTvCanChangeItsStateBasedInASensorOrder() {
+        ((Sensor)tv).changeState(SensorOrder.CLOSE);
+        assertFalse("Door should be closed", tv.getState());
+    }
+
+    /**
      * Verifies if Tv object can print its state.
      */
     @Test
     public void aTvCanPrintItsState() {
-        String expectedResult = "Hall Tv is now turned on";
+        String expectedResult = "-- Hall Tv -- is now turned on";
         tv.setComponentStateMessage("turned on");
         tv.printComponentState();
-        assertEquals("Hall Tv should be turned on", expectedResult, tv.getComponentStateMessage());
+        assertEquals("Hall Tv should be turned on", expectedResult.trim(), tv.getComponentStateMessage().trim());
     }
 }

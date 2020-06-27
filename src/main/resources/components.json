@@ -1,7 +1,7 @@
 {
   "DOOR": ["Entrance", "Garage", "1st_Floor_Bedroom", "2nd_Floor_Bathroom", "Kitchen"],
-  "WINDOW": ["Hall", "2nd_Floor_Bedroom", "Kitchen", "Attic"],
-  "LIGHTS" : ["Hall", "Garage", "1st_Floor_Bathroom", "Kitchen", "Attic", "Basement"],
-  "TV": ["Hall", "1st_Floor_Bedroom", "Basement"],
+  "WINDOW": ["Living_Room", "2nd_Floor_Bedroom", "Kitchen", "Attic"],
+  "LIGHTS" : ["Living_Room", "Garage", "1st_Floor_Bathroom", "Kitchen", "Attic", "Basement"],
+  "TV": ["Living_Room", "1st_Floor_Bedroom", "Basement"],
   "MICROWAVE" : ["Kitchen", "Basement"]
 }

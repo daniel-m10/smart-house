@@ -1,0 +1,12 @@
+{
+  "Cinema" : {
+    "Living_Room_Window" : "CLOSE",
+    "Living_Room_Lights" : "TURN_OFF",
+    "Living_Room_Tv" : "TURN_ON"
+  },
+  "Dinner" : {
+    "Kitchen_Window" : "OPEN",
+    "Kitchen_Lights" : "TURN_ON",
+    "Kitchen_Microwave" : "TURN_ON"
+  }
+}
