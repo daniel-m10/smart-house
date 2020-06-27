@@ -1,7 +1,10 @@
 package com.techgroup.core.components;
 
 import com.techgroup.core.HouseComponent;
+import com.techgroup.core.sensor.Sensor;
+import com.techgroup.types.SensorOrder;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -40,13 +43,22 @@ public class DoorTest {
     }
 
     /**
+     * Verifies if Door object can change its state through a Sensor order.
+     */
+    @Test
+    public void aDoorCanChangeItsStateBasedInASensorOrder() {
+        ((Sensor)door).changeState(SensorOrder.CLOSE);
+        assertFalse("Door should be closed", door.getState());
+    }
+
+    /**
      * Verifies if Door object can print its state.
      */
     @Test
     public void aDoorCanPrintItsState() {
-        String expectedResult = "Garden door is now open";
+        String expectedResult = "-- Garden door -- is now open\n";
         door.setComponentStateMessage("open");
         door.printComponentState();
-        assertEquals("Door should be open", expectedResult, door.getComponentStateMessage());
+        assertEquals("Door should be open", expectedResult.trim(), door.getComponentStateMessage().trim());
     }
 }

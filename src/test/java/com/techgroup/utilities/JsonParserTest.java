@@ -1,5 +1,6 @@
 package com.techgroup.utilities;
 
+import com.google.gson.internal.LinkedTreeMap;
 import com.techgroup.types.Component;
 import com.techgroup.types.SensorOrder;
 import org.junit.Test;
@@ -27,7 +28,7 @@ import static org.junit.Assert.assertTrue;
 public class JsonParserTest {
     private static final String ENTRANCE = "Entrance";
     private static final String GARAGE = "Garage";
-    private static final String HALL = "Hall";
+    private static final String Living_Room = "Living_Room";
     private static final String BEDROOM_ONE = "1st_Floor_Bedroom";
     private static final String BEDROOM_TWO = "2nd_Floor_Bedroom";
     private static final String BATHROOM_ONE = "1st_Floor_Bathroom";
@@ -40,9 +41,16 @@ public class JsonParserTest {
     private static final String KITCHEN_DOOR = "Kitchen_Door";
     private static final String BEDROOM_WINDOW = "2nd_Floor_Bedroom_Window";
     private static final String BASEMENT_TV = "Basement_Tv";
-    private static final String KITCHEN_MICROWAVE = "Kitchen_Microwave";
     private static final String BATHROOM_LIGHTS = "1st_Floor_Bathroom_Lights";
     private static final String ATTIC_WINDOW = "Attic_Window";
+    private static final String LIVING_ROOM_WINDOW = "Living_Room_Window";
+    private static final String LIVING_ROOM_LIGHTS = "Living_Room_Lights";
+    private static final String LIVING_ROOM_TV = "Living_Room_Tv";
+    private static final String KITCHEN_WINDOW = "Kitchen_Window";
+    private static final String KITCHEN_LIGHTS = "Kitchen_Lights";
+    private static final String KITCHEN_MICROWAVE = "Kitchen_Microwave";
+    private static final String CINEMA = "Cinema";
+    private static final String DINNER = "Dinner";
 
 
     /**
@@ -55,9 +63,9 @@ public class JsonParserTest {
         String componentsPath = "src/main/resources/components.json";
         Map<Component, String[]> expectedResult = new EnumMap<>(Component.class);
         expectedResult.put(DOOR, new String[] {ENTRANCE, GARAGE, BEDROOM_ONE, BATHROOM_TWO, KITCHEN});
-        expectedResult.put(WINDOW, new String[] {HALL, BEDROOM_TWO, KITCHEN, ATTIC});
-        expectedResult.put(LIGHTS, new String[] {HALL, GARAGE, BATHROOM_ONE, KITCHEN, ATTIC, BASEMENT});
-        expectedResult.put(TV, new String[] {HALL, BEDROOM_ONE, BASEMENT});
+        expectedResult.put(WINDOW, new String[] {Living_Room, BEDROOM_TWO, KITCHEN, ATTIC});
+        expectedResult.put(LIGHTS, new String[] {Living_Room, GARAGE, BATHROOM_ONE, KITCHEN, ATTIC, BASEMENT});
+        expectedResult.put(TV, new String[] {Living_Room, BEDROOM_ONE, BASEMENT});
         expectedResult.put(MICROWAVE, new String[] {KITCHEN, BASEMENT});
         Map<Component, String[]> actualResult = JsonParser.parseJsonToComponentMap(componentsPath);
         assertTrue(areComponentMapsEqual(actualResult, expectedResult));
@@ -77,12 +85,49 @@ public class JsonParserTest {
         expectedResult.put(KITCHEN_DOOR, OPEN);
         expectedResult.put(BEDROOM_WINDOW, OPEN);
         expectedResult.put(BASEMENT_TV, TURN_ON);
-        expectedResult.put(KITCHEN_MICROWAVE, TURN_OFF);
         expectedResult.put(BATHROOM_LIGHTS, TURN_ON);
         expectedResult.put(ATTIC_WINDOW, OPEN);
         Map<String, SensorOrder> actualResult = JsonParser.parseJsonToOrderMap(ordersPath);
         assertTrue(areOrderMapsEqual(actualResult, expectedResult));
     }
+
+    /**
+     * Verifies if Map<String, Map<String, SensorOrder>> was created correctly from a specified json file.
+     *
+     * @throws FileNotFoundException if json file cannot be found.
+     */
+    @Test
+    public void modeFileCanBeParsed() throws FileNotFoundException {
+        String ordersPath = "src/main/resources/modes.json";
+        Map<String, Map<String, SensorOrder>> expectedResult = new LinkedTreeMap<>();
+        Map<String, SensorOrder> cinemaMap = new LinkedTreeMap<>();
+        Map<String, SensorOrder> dinnerMap = new LinkedTreeMap<>();
+        // Orders for Cinema mode
+        cinemaMap.put(LIVING_ROOM_WINDOW, CLOSE);
+        cinemaMap.put(LIVING_ROOM_LIGHTS, TURN_OFF);
+        cinemaMap.put(LIVING_ROOM_TV, TURN_ON);
+        expectedResult.put(CINEMA, cinemaMap);
+        // Orders for Dinner mode
+        dinnerMap.put(KITCHEN_WINDOW, OPEN);
+        dinnerMap.put(KITCHEN_LIGHTS, TURN_ON);
+        dinnerMap.put(KITCHEN_MICROWAVE, TURN_ON);
+        expectedResult.put(DINNER, dinnerMap);
+        Map<String, Map<String, SensorOrder>> actualResult = JsonParser.parseJsonToModeMap(ordersPath);
+        for (Map.Entry<String, Map<String, SensorOrder>> entry : expectedResult.entrySet()) {
+            assertTrue(areOrderMapsEqual(entry.getValue(), actualResult.get(entry.getKey())));
+        }
+    }
+
+    /**
+     * Verifies if a FileNotFoundException is thrown when file is not found at specified path.
+     *
+     * @throws FileNotFoundException if json file cannot be found.
+     */
+    @Test(expected = FileNotFoundException.class)
+    public void aExceptionIsThrowWhenFileIsNotFound() throws FileNotFoundException {
+        JsonParser.parseJsonToOrderMap("wrong_path");
+    }
+
 
     /**
      * Determines if two Map of Components are equal.

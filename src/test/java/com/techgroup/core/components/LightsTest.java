@@ -1,6 +1,8 @@
 package com.techgroup.core.components;
 
 import com.techgroup.core.HouseComponent;
+import com.techgroup.core.sensor.Sensor;
+import com.techgroup.types.SensorOrder;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -40,13 +42,22 @@ public class LightsTest {
     }
 
     /**
+     * Verifies if Lights object can change its state through a Sensor order.
+     */
+    @Test
+    public void aLightCanChangeItsStateBasedInASensorOrder() {
+        ((Sensor)lights).changeState(SensorOrder.TURN_OFF);
+        assertFalse("Door should be closed", lights.getState());
+    }
+
+    /**
      * Verifies if Lights object can print its state.
      */
     @Test
     public void lightsCanPrintItsState() {
-        String expectedResult = "Main door lights is now turned on";
+        String expectedResult = "-- Main door lights -- is now turned on";
         lights.setComponentStateMessage("turned on");
         lights.printComponentState();
-        assertEquals("Lights should be turned on", expectedResult, lights.getComponentStateMessage());
+        assertEquals("Lights should be turned on", expectedResult.trim(), lights.getComponentStateMessage().trim());
     }
 }

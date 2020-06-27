@@ -4,7 +4,6 @@
   "Kitchen_Door": "OPEN",
   "2nd_Floor_Bedroom_Window": "OPEN",
   "Basement_Tv" : "TURN_ON",
-  "Kitchen_Microwave": "TURN_OFF",
   "1st_Floor_Bathroom_Lights" : "TURN_ON",
   "Attic_Window": "OPEN"
 }

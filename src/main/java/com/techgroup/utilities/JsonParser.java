@@ -17,13 +17,13 @@ public final class JsonParser {
     private static final Gson gson;
     private static final Type componentMap;
     private static final Type ordersMap;
+    private static final Type modeMap;
 
     static {
         gson = new Gson();
-        componentMap = new TypeToken<Map<Component, String[]>>() {
-        }.getType();
-        ordersMap = new TypeToken<Map<String, SensorOrder>>() {
-        }.getType();
+        componentMap = new TypeToken<Map<Component, String[]>>() {}.getType();
+        ordersMap = new TypeToken<Map<String, SensorOrder>>() {}.getType();
+        modeMap = new TypeToken<Map<String, Map<String, SensorOrder>>>() {}.getType();
     }
 
     /**
@@ -52,6 +52,18 @@ public final class JsonParser {
      */
     public static Map<String, SensorOrder> parseJsonToOrderMap(final String filePath) throws FileNotFoundException {
         return gson.fromJson(getFile(filePath), ordersMap);
+    }
+
+    /**
+     * Parses a json to a Mode Map, this one will be used by House class.
+     *
+     * @param filePath represents the relative path of file that contains list of modes.
+     * @return a Map of modes to change a bunch of HouseComponent states.
+     * @throws FileNotFoundException if file cannot be found in the specified path.
+     */
+    public static Map<String, Map<String, SensorOrder>> parseJsonToModeMap(final String filePath)
+            throws FileNotFoundException {
+        return gson.fromJson(getFile(filePath), modeMap);
     }
 
     /**
