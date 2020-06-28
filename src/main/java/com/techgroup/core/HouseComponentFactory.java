@@ -55,11 +55,8 @@ public final class HouseComponentFactory {
                 return new Lights(name);
             case WINDOW:
                 return new Window(name);
-            case MICROWAVE:
-                return new Microwave(name);
             default:
-                System.out.println(String.format("%s is not a valid component", component));
-                return null;
+                return new Microwave(name);
         }
     }
 
