@@ -34,6 +34,24 @@ public class House implements Observable {
     }
 
     /**
+     * Gets list of subscribed devices.
+     *
+     * @return list of Observer objects.
+     */
+    public List<Observer> getDevices() {
+        return this.devices;
+    }
+
+    /**
+     * Gets all house components added to the House.
+     *
+     * @return a Map of components with their corresponding name.
+     */
+    public Map<String, HouseComponent> getHouseComponentMap() {
+        return this.houseComponentMap;
+    }
+
+    /**
      * {@inheritDoc}.
      */
     @Override
